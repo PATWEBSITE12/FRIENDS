@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Friends for Keeps</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+            background-color: white;
+            color: #333;
+        }
+        .header {
+            background: #003366;
+            color: white;
+            padding: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            border-bottom: 5px solid #001a33;
+        }
+        .tabs {
+            display: flex;
+            justify-content: center;
+            background: #003366;
+            padding: 10px;
+        }
+        .tab-button {
+            background: white;
+            color: #003366;
+            border: none;
+            padding: 12px 20px;
+            margin: 0 5px;
+            cursor: pointer;
+            font-weight: bold;
+            border-radius: 10px;
+            font-size: 16px;
+        }
+        .tab-button:hover, .tab-button.active {
+            background: #001a33;
+            color: white;
+        }
+        .tab-content {
+            display: none;
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+            margin: 20px auto;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        .active-content {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .button {
+            background: #003366;
+            color: white;
+            padding: 12px 18px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .button:hover {
+            background: #001a33;
+        }
+        .trivia-box {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .trivia-number {
+            width: 50px;
+            height: 50px;
+            background: #003366;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        .trivia-number:hover {
+            background: #001a33;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        🎉 Friends for Keeps 🎉
+    </div>
+    
+    <div class="tabs">
+        <button class="tab-button active" onclick="openTab(event, 'welcome')">🏠 Welcome</button>
+        <button class="tab-button" onclick="openTab(event, 'trivia')">🎮 Trivia</button>
+        <button class="tab-button" onclick="openTab(event, 'survey')">📅 Survey</button>
+    </div>
+    
+    <div id="welcome" class="tab-content active-content">
+        <h2>Welcome, Friends! 🎊</h2>
+        <p>Hello Everyone, Kumusta naman ta drang dapita? I know busy na kaayo taron nga mga days, But Labaan ra gehapon ta ninyo! Shoutout to ameegang Lals & Rowena, Shoutout kos inyo Vlogs :P hehehehe. And to the other girls, Kumusta naman mo?</p>
+    </div>
+    
+    <div id="trivia" class="tab-content">
+        <h2>Trivia Time! 🎲</h2>
+        <p>Click a number to reveal the question:</p>
+        <div class="trivia-box">
+            <button class="trivia-number" onclick="showQuestion(1)">1</button>
+            <button class="trivia-number" onclick="showQuestion(2)">2</button>
+            <button class="trivia-number" onclick="showQuestion(3)">3</button>
+            <button class="trivia-number" onclick="showQuestion(4)">4</button>
+            <button class="trivia-number" onclick="showQuestion(5)">5</button>
+        </div>
+    </div>
+    
+    <div id="survey" class="tab-content">
+        <h2>Survey: When is our Get-Together? 📆</h2>
+        <p>Pili-a ang date nga free mo!</p>
+        <input type="date"> <br>
+        <button class="button" onclick="submitSurvey()">Submit</button>
+    </div>
+
+    <script>
+        function openTab(evt, tabName) {
+            let i, tabcontent, tabbuttons;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tabbuttons = document.getElementsByClassName("tab-button");
+            for (i = 0; i < tabbuttons.length; i++) {
+                tabbuttons[i].classList.remove("active");
+            }
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+
+        function showQuestion(num) {
+            let questions = [
+                "Unsa atong favorite hangout place sa college?",
+                "Asa ta usually mag lunch before?",
+                "Unsay fav food nato?",
+                "Asa ta usually if ever watay klase mag tambay?",
+                "When ato Graduation? HAHAHA"
+            ];
+            alert("Ang Pangutana?\n\n" + questions[num - 1]);
+        }
+
+        function submitSurvey() {
+            alert("Uyyy! Kana ako Ganahan!");
+        }
+    </script>
+</body>
+</html>
