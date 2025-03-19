@@ -92,6 +92,13 @@
         .trivia-number:hover {
             background: #001a33;
         }
+        .input-field {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #003366;
+            border-radius: 5px;
+        }
     </style>
 </head>
 <body>
@@ -112,7 +119,7 @@
     
     <div id="trivia" class="tab-content">
         <h2>Trivia Time! 🎲</h2>
-        <p>Click a number to reveal the question:</p>
+        <p>Click a number to reveal the question and submit your answer:</p>
         <div class="trivia-box">
             <button class="trivia-number" onclick="showQuestion(1)">1</button>
             <button class="trivia-number" onclick="showQuestion(2)">2</button>
@@ -121,11 +128,8 @@
             <button class="trivia-number" onclick="showQuestion(5)">5</button>
         </div>
         <br>
-        <label>Enter Your Name:</label>
-        <input type="text" id="name" placeholder="Your Name">
-        <p id="selected-question">Click a number above to get a question!</p>
-        <label>Your Answer:</label>
-        <input type="text" id="answer" placeholder="Your Answer">
+        <input type="text" id="name" class="input-field" placeholder="Enter your name">
+        <input type="text" id="answer" class="input-field" placeholder="Enter your answer">
         <button class="button" onclick="submitTrivia()">Submit</button>
     </div>
     
@@ -137,7 +141,6 @@
     </div>
 
     <script>
-        let selectedQuestion = "";
         function openTab(evt, tabName) {
             let i, tabcontent, tabbuttons;
             tabcontent = document.getElementsByClassName("tab-content");
@@ -160,19 +163,17 @@
                 "Asa ta usually if ever watay klase mag tambay?",
                 "When ato Graduation? HAHAHA"
             ];
-            selectedQuestion = questions[num - 1];
-            document.getElementById("selected-question").innerText = "Ang Pangutana? " + selectedQuestion;
+            alert("Ang Pangutana?\n\n" + questions[num - 1]);
         }
 
         function submitTrivia() {
             let name = document.getElementById("name").value;
             let answer = document.getElementById("answer").value;
-            fetch("https://script.google.com/macros/s/AKfycbyJi73StJlTPIsttFbFEoWeFFC-OuT-GOca5f5VkDl5jx1cKZnBKk9nR9pWUJYIYmC0VQ/exec", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ name: name, question: selectedQuestion, answer: answer })
-            });
-            alert("Uyyy! Kana ako Ganahan!");
+            if (name && answer) {
+                alert("Uyyy! Kana ako Ganahan!");
+            } else {
+                alert("Please enter your name and answer.");
+            }
         }
     </script>
 </body>
