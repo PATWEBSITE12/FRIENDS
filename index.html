@@ -120,6 +120,13 @@
             <button class="trivia-number" onclick="showQuestion(4)">4</button>
             <button class="trivia-number" onclick="showQuestion(5)">5</button>
         </div>
+        <br>
+        <label>Enter Your Name:</label>
+        <input type="text" id="name" placeholder="Your Name">
+        <p id="selected-question">Click a number above to get a question!</p>
+        <label>Your Answer:</label>
+        <input type="text" id="answer" placeholder="Your Answer">
+        <button class="button" onclick="submitTrivia()">Submit</button>
     </div>
     
     <div id="survey" class="tab-content">
@@ -130,6 +137,7 @@
     </div>
 
     <script>
+        let selectedQuestion = "";
         function openTab(evt, tabName) {
             let i, tabcontent, tabbuttons;
             tabcontent = document.getElementsByClassName("tab-content");
@@ -152,10 +160,18 @@
                 "Asa ta usually if ever watay klase mag tambay?",
                 "When ato Graduation? HAHAHA"
             ];
-            alert("Ang Pangutana?\n\n" + questions[num - 1]);
+            selectedQuestion = questions[num - 1];
+            document.getElementById("selected-question").innerText = "Ang Pangutana? " + selectedQuestion;
         }
 
-        function submitSurvey() {
+        function submitTrivia() {
+            let name = document.getElementById("name").value;
+            let answer = document.getElementById("answer").value;
+            fetch("https://script.google.com/macros/s/AKfycbyJi73StJlTPIsttFbFEoWeFFC-OuT-GOca5f5VkDl5jx1cKZnBKk9nR9pWUJYIYmC0VQ/exec", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ name: name, question: selectedQuestion, answer: answer })
+            });
             alert("Uyyy! Kana ako Ganahan!");
         }
     </script>
